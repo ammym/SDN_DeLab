@@ -18,6 +18,8 @@ def getOrganizations (): #Imprime y devuelve la lista de las organizaciones
 	pprint(response.json())
 
 	res_org=response.json()
+
+	print(response.raise_for_status())
 	
 	return res_org
 
