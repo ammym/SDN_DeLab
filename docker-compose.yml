@@ -1,0 +1,11 @@
+services:
+  sdn:
+    image: delab
+    volumes:
+      - sdn-vol:/DeLab
+volumes:
+  sdn-vol:
+      external: true
+
+
+
