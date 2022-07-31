@@ -15,6 +15,8 @@ Crea un archivo Inventario.csv donde se listan los dispositivos "wireless" y "ap
 
 Se agrega archivo Dockerfile que permite la creación de un contenedor para ejecutar el script de Python.
 
+Se agrega archivo docker-compose.yml que permite configurar los servicios de la aplicación a ejecutar.
+
 
 ###### Estado:
 ***
@@ -87,3 +89,18 @@ Debe estar en la carpeta donde tiene el script.py, para ello utilice en el CMD l
 cd ruta
 python3 script.py
 ```
+
+Si se ejecuta a partir de un contenedor de Docker, primero, debe crear la imagen a partir del Dockerfile con el siguiente comando:
+
+```sh
+sudo docker build -t delab .
+```
+
+Luego, puede crear el contenedor a partir del archivo docker-compose.yml. Para esto, debe crear un volumen y luego ejecutar el comando compose. Se deben ejecutar los siguientes comandos:
+
+```sh
+sudo docker volume create sdn-vol
+sudo docker compose up -d
+```
+
+Con estos comandos debe tener como resultado la ejecución de un contenedor que ejecute el script "script.py" y almacene el archivo "Inventario.py" en el volumen sdn-vol
