@@ -2,6 +2,7 @@ import requests
 from pprint import pprint
 import json
 import csv
+import time
 
 
 #--------------------URL's------------------------------
@@ -15,14 +16,15 @@ Key = {"X-Cisco-Meraki-API-Key" : "6bec40cf957de430a6f1f2baa056b99a4fac9ea0"}
 def getOrganizations (): #Imprime y devuelve la lista de las organizaciones
 	
 	response = requests.get(url,headers=Key)
+	
+	if (response.raise_for_status()!=None):
+		print("Ha ocurrido un error en la consulta de las listas de las organizaciones")
 
 	print("La lista de las organizaciones es:\n")
 	
 	pprint(response.json())
 
 	res_org=response.json()
-
-	print(response.raise_for_status())
 	
 	return res_org
 
@@ -40,6 +42,9 @@ def DevicesList(id):
 	url_combine = url + id_devices
 
 	response = requests.get(url_combine, headers=Key)
+	
+	if (response.raise_for_status()!=None):
+		print("Ha ocurrido un error en la consulta de las listas de los dispositivos")
 
 	res_devices = response.json()  #Lista de dispositivos
 
@@ -77,6 +82,9 @@ def DevicesStatuses (id):
 
 	response = requests.get(url_combine, headers=Key)
 	
+	if (response.raise_for_status()!=None):
+		print("Ha ocurrido un error en la consulta de los status de las listas de los dispositivos")
+	
 	res_status = response.json()
 		
 	return res_status
@@ -90,8 +98,19 @@ def DicttoCSV (devices):
 		name_w.writeheader()
 		name_w.writerows(devices)
 
-org=getOrganizations()
-getOrganizationsDevices (org)
+
+def Repeticion (): #Consulta cada 5min
+	time.sleep(5*60)
+	print("El archivo Inventario.csv se actualizo")
+
+while(True): #Se realiza la consulta cada 5min y se actualiza el archivo "Inventario.csv"
+	org=getOrganizations()
+	getOrganizationsDevices (org)
+	Repeticion()
+
+
+
+
 
 
 

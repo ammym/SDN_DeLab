@@ -13,6 +13,9 @@ Programa que permite acceder y listar las organizaciones con las que se tiene ac
 
 Crea un archivo Inventario.csv donde se listan los dispositivos "wireless" y "appliance" de la organización DeLab. Este contiene: Tipo_Poducto, Modelo, Nombre, Direccion_MAC, Serial, Direccion_IP_LAN, Direccion_IP_Publica y Status.
 
+Se agrega archivo Dockerfile que permite la creación de un contenedor para ejecutar el script de Python.
+
+
 ###### Estado:
 ***
 Culminado
@@ -71,6 +74,10 @@ Es una función que retorna la respuesta obtenida al realizar la petición del e
 Es una función que recibe una lista de diccionarios y lo guarda en el archivo "Inventario.csv" en el formato de valores separados por coma. 
 
 Este archivo contiene la lista de los dispositivos "wireless" y "appliance" de la organización DeLab, este contiene: Tipo_Poducto, Modelo, Nombre, Direccion_MAC, Serial, Direccion_IP_LAN, Direccion_IP_Publica y Status.
+
+## Repeticion()
+
+Es una funcion que permite tener un temporizador de 5 minutos en Python, para ejecutar el script continuamente y mantener actualizado el archivo Inventario.py
 
 
 ## ¿Cómo ejecutar?
